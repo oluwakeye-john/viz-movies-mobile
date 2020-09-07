@@ -6,7 +6,8 @@ import { AbsoluteContainer } from "../components/container";
 import LoadingScreen from "./LoadingScreen";
 import styled from "styled-components/native";
 import { colors } from "../theme/colors";
-import { Image, View, ImageBackground } from "react-native";
+import { Image, View, ImageBackground, ScrollView, Text } from "react-native";
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
 const Details = ({ route, updateMovieDetail, navigation }: any) => {
   const id = route.params.id;
@@ -32,30 +33,44 @@ const Details = ({ route, updateMovieDetail, navigation }: any) => {
       {loading ? (
         <LoadingScreen />
       ) : (
-        <View>
-          <DetailView style={{ position: "relative" }}>
-            <ImageBackground
+        <ScrollView>
+          <ImageBackground
+            resizeMode="cover"
+            source={{ uri: image2, width: "100%", height: "100%" }}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            imageStyle={{ opacity: 0.05 }}
+          >
+            <Image
+              source={{ uri: image, width: "100%", height: 200 }}
               resizeMode="cover"
-              source={{ uri: image2, width: "100%", height: "100%" }}
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-              imageStyle={{ opacity: 0.05 }}
-            >
-              <Image
-                source={{ uri: image, width: "100%", height: 200 }}
-                resizeMode="cover"
-              />
+            />
 
-              <DetailMain>
-                <DetailTitle>{detail.title}</DetailTitle>
-                {/* <DetailTagLine>``{detail.tagline}``</DetailTagLine> */}
-                <DetailText>{detail.overview}</DetailText>
-              </DetailMain>
-            </ImageBackground>
-          </DetailView>
-        </View>
+            <DetailMain>
+              <DetailTitle>{detail.title}</DetailTitle>
+              <DetailTagLine>``{detail.tagline}``</DetailTagLine>
+              <DetailText>{detail.overview}</DetailText>
+
+              <DetailTabList>
+                <DetailTab>
+                  <MaterialIcons name="rate-review" size={20} />
+                  {detail.vote_average}/10
+                </DetailTab>
+                <DetailTab>
+                  <MaterialIcons name="date-range" size={20} />
+
+                  {detail.release_date}
+                </DetailTab>
+                <DetailTab>
+                  <MaterialIcons name="timer" size={20} />
+                  {detail.runtime} minutes
+                </DetailTab>
+              </DetailTabList>
+            </DetailMain>
+          </ImageBackground>
+        </ScrollView>
       )}
     </AbsoluteContainer>
   );
@@ -83,7 +98,8 @@ const DetailTagLine = styled.Text`
   font-style: italic;
   color: ${colors.text};
   font-size: 20px;
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
   width: 80%;
   text-align: center;
 `;
@@ -96,6 +112,22 @@ const DetailText = styled.Text`
   line-height: 20px;
   text-align: center;
 `;
+
+const DetailTabList = styled.View`
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+  margin: 20px 0;
+`;
+
+const DetailTab = styled.View`
+  width: 33.3%;
+  text-align: center;
+  color: ${colors.text};
+`;
+
+const DetailTabText = styled.Text``;
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
