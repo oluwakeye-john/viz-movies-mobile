@@ -66,6 +66,8 @@ const CardListContainer = styled.View`
 
 const EmptyCardList = styled.Text`
   color: ${colors.text};
+  text-align: center;
+  margin-bottom: 20px;
 `;
 
 const FlatListFooter = styled.View`

@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import Container from "../components/container";
 import SearchBar from "../components/input";

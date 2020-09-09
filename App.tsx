@@ -15,6 +15,7 @@ import Search from "./src/navigation/Search";
 import LoadingScreen from "./src/screens/LoadingScreen";
 import TabIcon from "./src/utils/tabIcon";
 import HomeNavigator from "./src/navigation/Home";
+import Favorites from "./src/navigation/Favorite";
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +43,7 @@ export default function App() {
           >
             <Tab.Screen name="Home" component={HomeNavigator} />
             <Tab.Screen name="Search" component={Search} />
-            <Tab.Screen name="Favorites" component={Home} />
+            <Tab.Screen name="Favorites" component={Favorites} />
             <Tab.Screen name="Downloads" component={Home} />
           </Tab.Navigator>
         </NavigationContainer>

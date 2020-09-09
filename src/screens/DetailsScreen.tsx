@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { updateMovieDetail } from "../redux/actions/movies";
+import { updateMovieDetail, addToFavorites } from "../redux/actions/movies";
 import { fullBaseUrl } from "../api/constants";
 import { AbsoluteContainer } from "../components/container";
 import LoadingScreen from "./LoadingScreen";
 import styled from "styled-components/native";
 import { colors } from "../theme/colors";
-import { Image, View, ImageBackground, ScrollView, Text } from "react-native";
+import {
+  Image,
+  View,
+  ImageBackground,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
-const Details = ({ route, updateMovieDetail, navigation }: any) => {
+const Details = ({
+  route,
+  updateMovieDetail,
+  navigation,
+  addToFavorites,
+}: any) => {
   const id = route.params.id;
   const [detail, setDetail] = useState({});
   const [loading, setLoading] = useState(true);
@@ -27,6 +39,10 @@ const Details = ({ route, updateMovieDetail, navigation }: any) => {
       setDetail(resp);
     });
   }, []);
+
+  const handleAddToFavorite = () => {
+    addToFavorites(detail);
+  };
 
   return (
     <AbsoluteContainer>
@@ -50,6 +66,9 @@ const Details = ({ route, updateMovieDetail, navigation }: any) => {
 
             <DetailMain>
               <DetailTitle>{detail.title}</DetailTitle>
+              <TouchableOpacity onPress={handleAddToFavorite}>
+                <FontAwesome name="heart" size={25} color="maroon" />
+              </TouchableOpacity>
               <DetailTagLine>``{detail.tagline}``</DetailTagLine>
 
               <DetailTabList>
@@ -147,6 +166,7 @@ const DetailTabText = styled.Text`
 const mapDispatchToProps = (dispatch: any) => {
   return {
     updateMovieDetail: (id: number) => dispatch(updateMovieDetail(id)),
+    addToFavorites: (favorite) => dispatch(addToFavorites(favorite)),
   };
 };
 

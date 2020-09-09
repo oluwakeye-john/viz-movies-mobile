@@ -9,6 +9,8 @@ import {
   CONCAT_POPULAR,
   UPDATE_SEARCH_TEXT,
   UPDATE_SEARCH_RESULT,
+  UPDATE_FAVORITES,
+  CONCAT_FAVORITES,
 } from "../constants/movies";
 
 export const updatePopular = () => {
@@ -84,15 +86,40 @@ export const updateSearch = (text: string) => {
         type: UPDATE_SEARCH_TEXT,
         payload: text,
       });
-      const searchResult = await searchMovie(text);
-      const searchResultJson = await searchResult.json();
-      dispatch({
-        type: UPDATE_SEARCH_RESULT,
-        payload: searchResultJson.results,
-      });
+      if (text === "") {
+        dispatch({
+          type: UPDATE_SEARCH_RESULT,
+          payload: [],
+        });
+      } else {
+        const searchResult = await searchMovie(text);
+        const searchResultJson = await searchResult.json();
+        dispatch({
+          type: UPDATE_SEARCH_RESULT,
+          payload: searchResultJson.results,
+        });
+      }
     } catch (err) {
       console.log(err);
       return false;
     }
+  };
+};
+
+export const addToFavorites = (favorite: any) => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: CONCAT_FAVORITES,
+      payload: favorite,
+    });
+  };
+};
+
+export const updateFavorites = (favorites: any) => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: UPDATE_FAVORITES,
+      payload: favorites,
+    });
   };
 };
