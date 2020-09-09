@@ -11,7 +11,7 @@ import { theme } from "./src/theme";
 import { store, persistor } from "./src/redux/store";
 import Home from "./src/screens/PopularScreen";
 import { colors } from "./src/theme/colors";
-import Search from "./src/screens/SearchScreen";
+import Search from "./src/navigation/Search";
 import LoadingScreen from "./src/screens/LoadingScreen";
 import TabIcon from "./src/utils/tabIcon";
 import HomeNavigator from "./src/navigation/Home";

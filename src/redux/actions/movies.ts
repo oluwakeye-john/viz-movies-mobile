@@ -1,8 +1,14 @@
-import { getPopularMovies, getMovieDetail } from "../../api/requests";
+import {
+  getPopularMovies,
+  getMovieDetail,
+  searchMovie,
+} from "../../api/requests";
 import {
   UPDATE_POPULAR,
   UPDATE_POPULAR_PAGE,
   CONCAT_POPULAR,
+  UPDATE_SEARCH_TEXT,
+  UPDATE_SEARCH_RESULT,
 } from "../constants/movies";
 
 export const updatePopular = () => {
@@ -66,6 +72,26 @@ export const updateMovieDetail = (id: number) => {
       const detailJson = await detail.json();
       return detailJson;
     } catch (err) {
+      return false;
+    }
+  };
+};
+
+export const updateSearch = (text: string) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch({
+        type: UPDATE_SEARCH_TEXT,
+        payload: text,
+      });
+      const searchResult = await searchMovie(text);
+      const searchResultJson = await searchResult.json();
+      dispatch({
+        type: UPDATE_SEARCH_RESULT,
+        payload: searchResultJson.results,
+      });
+    } catch (err) {
+      console.log(err);
       return false;
     }
   };

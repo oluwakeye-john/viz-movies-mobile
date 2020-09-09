@@ -51,23 +51,31 @@ const Details = ({ route, updateMovieDetail, navigation }: any) => {
             <DetailMain>
               <DetailTitle>{detail.title}</DetailTitle>
               <DetailTagLine>``{detail.tagline}``</DetailTagLine>
-              <DetailText>{detail.overview}</DetailText>
 
               <DetailTabList>
                 <DetailTab>
-                  <MaterialIcons name="rate-review" size={20} />
-                  {detail.vote_average}/10
+                  <MaterialIcons
+                    color={colors.text}
+                    name="rate-review"
+                    size={20}
+                  />
+                  <DetailTabText>{detail.vote_average}/10</DetailTabText>
                 </DetailTab>
                 <DetailTab>
-                  <MaterialIcons name="date-range" size={20} />
-
-                  {detail.release_date}
+                  <MaterialIcons
+                    color={colors.text}
+                    name="date-range"
+                    size={20}
+                  />
+                  <DetailTabText>{detail.release_date}</DetailTabText>
                 </DetailTab>
                 <DetailTab>
-                  <MaterialIcons name="timer" size={20} />
-                  {detail.runtime} minutes
+                  <MaterialIcons color={colors.text} name="timer" size={20} />
+                  <DetailTabText>{detail.runtime} minutes</DetailTabText>
                 </DetailTab>
               </DetailTabList>
+
+              <DetailText>{detail.overview}</DetailText>
             </DetailMain>
           </ImageBackground>
         </ScrollView>
@@ -83,6 +91,7 @@ const DetailView = styled.View`
 
 const DetailMain = styled.View`
   padding: 10px;
+  margin-bottom: 10px;
   align-items: center;
 `;
 
@@ -125,9 +134,15 @@ const DetailTab = styled.View`
   width: 33.3%;
   text-align: center;
   color: ${colors.text};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-const DetailTabText = styled.Text``;
+const DetailTabText = styled.Text`
+  color: ${colors.text};
+  margin-top: 5px;
+`;
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
