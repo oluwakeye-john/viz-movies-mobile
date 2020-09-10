@@ -51,25 +51,30 @@ const moviesReducer = (state: any = initial, action: any) => {
       };
     case CONCAT_FAVORITES:
       console.log(action.payload);
-      const isExist = state.favorites.filter((fav: any) => {
+      const isExist = state.favorites.map((fav: any) => {
         if (fav.id === action.payload.id) {
           console.log("duplicate");
-          return false;
-        } else {
           return true;
+        } else {
+          return false;
         }
       });
-      if (isExist.includes(false)) {
-        return {
-          ...state,
-        };
+      let newFav;
+      if (isExist.includes(true)) {
+        newFav = state.favorites.filter((fav: any) => {
+          if (fav.id === action.payload.id) {
+            return false;
+          } else {
+            return true;
+          }
+        });
       } else {
-        const newFav = state.favorites.concat(action.payload);
-        return {
-          ...state,
-          favorites: newFav,
-        };
+        newFav = state.favorites.concat(action.payload);
       }
+      return {
+        ...state,
+        favorites: newFav,
+      };
     default:
       return state;
   }

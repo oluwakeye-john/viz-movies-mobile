@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import { colors } from "../theme/colors";
-import { RefreshControl, ScrollView, Text, FlatList } from "react-native";
+import { RefreshControl, FlatList } from "react-native";
 import Card from "./card";
 
 const EmptyList = () => {

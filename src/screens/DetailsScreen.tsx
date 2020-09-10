@@ -21,6 +21,7 @@ const Details = ({
   updateMovieDetail,
   navigation,
   addToFavorites,
+  favorites,
 }: any) => {
   const id = route.params.id;
   const [detail, setDetail] = useState({});
@@ -44,6 +45,27 @@ const Details = ({
     addToFavorites(detail);
   };
 
+  const checkFavorite = () => {
+    const check = favorites.map((fav: any) => {
+      if (fav.id === detail.id) {
+        console.log("found");
+        return true;
+      } else {
+        return false;
+      }
+    });
+    console.log("lll", check);
+    if (check.includes(true)) {
+      console.log("already");
+      return colors.primary;
+    } else {
+      console.log("new");
+      return "#000";
+    }
+  };
+
+  const isFavorite = checkFavorite();
+  console.log("fav", isFavorite);
   return (
     <AbsoluteContainer>
       {loading ? (
@@ -67,7 +89,7 @@ const Details = ({
             <DetailMain>
               <DetailTitle>{detail.title}</DetailTitle>
               <TouchableOpacity onPress={handleAddToFavorite}>
-                <FontAwesome name="heart" size={25} color="maroon" />
+                <FontAwesome name="heart" size={25} color={isFavorite} />
               </TouchableOpacity>
               <DetailTagLine>``{detail.tagline}``</DetailTagLine>
 
@@ -163,11 +185,15 @@ const DetailTabText = styled.Text`
   margin-top: 5px;
 `;
 
+const mapStateToProps = (state: any) => ({
+  favorites: state.moviesReducer.favorites,
+});
+
 const mapDispatchToProps = (dispatch: any) => {
   return {
     updateMovieDetail: (id: number) => dispatch(updateMovieDetail(id)),
-    addToFavorites: (favorite) => dispatch(addToFavorites(favorite)),
+    addToFavorites: (favorite: any) => dispatch(addToFavorites(favorite)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(Details);
+export default connect(mapStateToProps, mapDispatchToProps)(Details);
