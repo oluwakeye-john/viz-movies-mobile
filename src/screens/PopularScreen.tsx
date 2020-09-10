@@ -16,7 +16,6 @@ const Popular = ({
   }, []);
 
   const handleLoadMore = () => {
-    console.log("loading more...");
     loadMore(popular_page + 1);
   };
 

@@ -35,7 +35,6 @@ export const updatePopular = () => {
 export const loadMore = (newPage: number) => {
   return async (dispatch: any) => {
     try {
-      console.log(">>>>");
       dispatch({
         type: UPDATE_POPULAR_PAGE,
         payload: newPage,
@@ -46,8 +45,6 @@ export const loadMore = (newPage: number) => {
         type: CONCAT_POPULAR,
         payload: respJson.results,
       });
-      console.log("page", newPage);
-      console.log(respJson.results.length);
     } catch (err) {
       return false;
     }
@@ -100,7 +97,6 @@ export const updateSearch = (text: string) => {
         });
       }
     } catch (err) {
-      console.log(err);
       return false;
     }
   };

@@ -15,7 +15,10 @@ const Search = ({ updateSearch, search_result }: any) => {
   return (
     <Container>
       <SearchView>
-        <SearchBar onTextChange={onTextChange} />
+        <SearchBar
+          clearButtonMode="while-editing"
+          onTextChange={onTextChange}
+        />
         <CardList movies={search_result} />
       </SearchView>
     </Container>

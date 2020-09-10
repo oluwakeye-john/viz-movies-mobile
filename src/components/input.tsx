@@ -3,7 +3,16 @@ import styled from "styled-components/native";
 import { colors } from "../theme/colors";
 
 const SearchBar = ({ onTextChange }: any) => {
-  return <Input onChangeText={onTextChange} placeholder="Search for movies" />;
+  const handleReturn = ({ nativeEvent }: any) => {
+    return onTextChange(nativeEvent.text);
+  };
+  return (
+    <Input
+      returnKeyType="search"
+      onSubmitEditing={handleReturn}
+      placeholder="Search for movies"
+    />
+  );
 };
 
 const Input = styled.TextInput`

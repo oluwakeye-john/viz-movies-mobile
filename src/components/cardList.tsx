@@ -29,9 +29,7 @@ const CardList = ({ movies, update, loadMore }: any) => {
   };
 
   const handleLoadMore = () => {
-    console.log("reached");
     if (loadMore) {
-      console.log("load more");
       loadMore();
     }
   };

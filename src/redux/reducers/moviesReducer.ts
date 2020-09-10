@@ -50,10 +50,8 @@ const moviesReducer = (state: any = initial, action: any) => {
         favorites: action.payload,
       };
     case CONCAT_FAVORITES:
-      console.log(action.payload);
       const isExist = state.favorites.map((fav: any) => {
         if (fav.id === action.payload.id) {
-          console.log("duplicate");
           return true;
         } else {
           return false;

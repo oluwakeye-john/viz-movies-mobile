@@ -48,24 +48,19 @@ const Details = ({
   const checkFavorite = () => {
     const check = favorites.map((fav: any) => {
       if (fav.id === detail.id) {
-        console.log("found");
         return true;
       } else {
         return false;
       }
     });
-    console.log("lll", check);
     if (check.includes(true)) {
-      console.log("already");
       return colors.primary;
     } else {
-      console.log("new");
       return "#000";
     }
   };
 
   const isFavorite = checkFavorite();
-  console.log("fav", isFavorite);
   return (
     <AbsoluteContainer>
       {loading ? (
