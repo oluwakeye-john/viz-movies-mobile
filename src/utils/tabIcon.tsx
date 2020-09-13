@@ -22,6 +22,9 @@ const TabIcon = ({ routeName, focused }: tabIconType) => {
     case "Downloads":
       icon = "cloud-download";
       break;
+    case "About":
+      icon = "person";
+      break;
   }
   return (
     <MaterialIcons

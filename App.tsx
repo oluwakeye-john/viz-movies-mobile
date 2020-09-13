@@ -15,14 +15,14 @@ import TabNavigation from "./src/navigation/tab";
 export default function App() {
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={<LoadingScreen />} persistor={persistor}> */}
-      <ThemeProvider theme={theme}>
-        <StatusBar barStyle={colors.statusBarStyle} />
-        <NavigationContainer>
-          <TabNavigation />
-        </NavigationContainer>
-      </ThemeProvider>
-      {/* </PersistGate> */}
+      <PersistGate loading={<LoadingScreen />} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <StatusBar barStyle={colors.statusBarStyle} />
+          <NavigationContainer>
+            <TabNavigation />
+          </NavigationContainer>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   );
 }

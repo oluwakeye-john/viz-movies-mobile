@@ -37,7 +37,6 @@ const TabNavigation = ({ favorites }: any) => {
           tabBarBadge: favorites.length,
         })}
       />
-      <Tab.Screen name="Downloads" component={Home} />
     </Tab.Navigator>
   );
 };

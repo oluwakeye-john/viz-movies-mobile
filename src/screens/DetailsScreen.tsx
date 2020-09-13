@@ -56,7 +56,7 @@ const Details = ({
     if (check.includes(true)) {
       return colors.primary;
     } else {
-      return "#000";
+      return "#fff";
     }
   };
 
